@@ -1,11 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Vendor.aspx.cs" Inherits="BilklPaymentWenFormPortal.VendorPages.Vendor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Vendor.aspx.cs" Inherits="BilklPaymentWenFormPortal.NewForm.Vendor" %>
 
+<!DOCTYPE html>
 
-
- <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8" />
     <title>Vendor Portal - BilklPayment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -494,24 +492,11 @@
             margin-bottom: 20px;
             opacity: 0.5;
         }
-=======
-    <title>Vendor Payment</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; }
-        input[type="text"], input[type="email"], input[type="number"] {
-            width: 300px; padding: 8px; margin-top: 5px;
-        }
-        .btn { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
-        .btn:hover { background: #0056b3; }
->>>>>>> 7ac96fbc72629cc93c05f2853111286ce612ca55
     </style>
 </head>
 
 <body>
-
-   <%-- <form id="form2" runat="server">--%>
+    <form id="form2" runat="server">
         <div class="layout">
             <!-- Enhanced Sidebar -->
             <div class="sidebar">
@@ -594,7 +579,7 @@
                                     <i class="fas fa-dollar-sign"></i>
                                 </div>
                             </div>
-                            <p class="stat-card-value">$12,450</p>
+                            <p class="stat-card-value">(Ugx)12,450</p>
                         </div>
                     </div>
 
@@ -605,14 +590,14 @@
                             <p>Search and manage your customer database</p>
                         </div>
                         <div class="section-body">
-                            <%--<div class="search-container">
+                            <div class="search-container">
                                 <i class="fas fa-search"></i>
                                 <asp:TextBox ID="txtSearchVendor" runat="server" 
                                     CssClass="form-control" 
                                     AutoPostBack="true" 
                                     OnTextChanged="txtSearchCustomer_TextChanged" 
                                     Placeholder="Search customers by name or code..." />
-                            </div>--%>
+                            </div>
                             
                             <div class="table-container">
                                 <asp:GridView ID="gvVendors" runat="server" 
@@ -671,9 +656,9 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             <i class="fas fa-times me-1"></i>Cancel
                         </button>
-                      <%--  <asp:Button ID="btnCreateUser" runat="server" Text="Create User" 
+                        <asp:Button ID="btnCreateUser" runat="server" Text="Create User" 
                             CssClass="btn btn-success" OnClick="btnCreateCustomer_Click" />
-                    </div>--%>
+                    </div>
                     <asp:Label ID="MessageLabel1" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
                 </div>
             </div>
@@ -707,27 +692,27 @@
 
 
                             <!-- Utility Selection -->
-                         <%--   <div class="col-md-6">
+                            <div class="col-md-6">
                                 <label class="form-label"><i class="fas fa-bolt me-1"></i>Select Utility</label>
                                 <asp:DropDownList ID="ddlUtilities" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlUtilities_SelectedIndexChanged">
                                     <asp:ListItem Text="-- Select Utility --" Value="" />
                                     <asp:ListItem Text="Electricity - UMEME" Value="UMEME|50.00" />
                                     <asp:ListItem Text="Water - NWSC" Value="NWSC|30.00" />
-                                    <asp:ListItem Text="Internet - MTN" Value="MTN|25.00" />
-                                    <asp:ListItem Text="Cable TV - DSTV" Value="DSTV|40.00" />
-                                    <asp:ListItem Text="Gas - Total Uganda" Value="TOTAL|35.00" />
+                                  <%--  <asp:ListItem Text=" - MTN" Value="MTN|25.00" />--%>
+                                    <asp:ListItem Text="DSTV" Value="DSTV|40.00" />
+                                  <%--  <asp:ListItem Text="Gas - Total Uganda" Value="TOTAL|35.00" />--%>
                                 </asp:DropDownList>
-                            </div>--%>
+                            </div>
 
                             <!-- Payment Amount -->
                             <div class="col-md-6">
-                                <label class="form-label"><i class="fas fa-dollar-sign me-1"></i>Amount to Pay (USD)</label>
+                                <label class="form-label"><i class="fas fa-dollar-sign me-1"></i>Amount to Pay (Ugx)</label>
                                 <div class="input-group">
                                     <span class="input-group-text">$</span>
                                     <asp:TextBox ID="txtPaymentAmount" runat="server" CssClass="form-control" 
                                         TextMode="Number" placeholder="0.00" step="0.01" min="0" />
                                 </div>
-                                <small class="text-muted">Minimum payment: $1.00</small>
+                                <small class="text-muted">Minimum payment: (Ugx)1.00</small>
                             </div>
 
                             <!-- Payment Method -->
@@ -766,7 +751,7 @@
                                         </div>
                                         <div class="col-6 mt-2">
                                             <strong>Amount:</strong>
-                                            <span id="summaryAmount" class="text-success fw-bold">$0.00</span>
+                                            <span id="summaryAmount" class="text-success fw-bold">(Ugx)0.00</span>
                                         </div>
                                         <div class="col-6 mt-2">
                                             <strong>Payment Method:</strong>
@@ -781,9 +766,9 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             <i class="fas fa-times me-1"></i>Cancel
                         </button>
-                       <%-- <asp:Button ID="btnProcessPayment" runat="server" Text="Process Payment" 
+                        <asp:Button ID="btnProcessPayment" runat="server" Text="Process Payment" 
                             CssClass="btn btn-primary btn-lg" OnClick="btnProcessPayment_Click" 
-                            OnClientClick="return validatePaymentForm();" />--%>
+                            OnClientClick="return validatePaymentForm();" />
                     </div>
                     <asp:Label ID="PaymentMessageLabel" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
                 </div>
@@ -809,72 +794,6 @@
         <asp:Label runat="server" ID="MessageLabel" CssClass="text-success" />
         <asp:Label ID="Label3" runat="server" CssClass="text-danger" />
         <asp:Label ID="Label5" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
-=======
-
-
-
-
-        <!-- Vendor-->
-    <form id="form3" runat="server">
-        <h2>Vendor Utility Payment</h2>
-
-        <%--<div class="form-group">
-            <label for="txtVendorCode">Vendor Code</label>
-            <asp:TextBox ID="TextBox1" runat="server" />
-        </div>--%>
-
-          <div class="form-group">
-      <label for="txtVendorCode">Vendor Code</label>
-      <asp:TextBox ID="TextBox1" runat="server" />
-  </div>
-
-<%--        <div class="form-group">
-            <label for="txtReference">Reference Number</label>
-            <asp:TextBox ID="TextBox2" runat="server" />
-        </div>--%>
-
-         <div class="form-group">
-     <label for="txtReference">Reference Number</label>
-     <asp:TextBox ID="TextBox2" runat="server" />
- </div>
-
-
-        <asp:Button ID="Button1" runat="server" CssClass="btn" Text="Validate Reference" OnClick="btnValidate_Click" />
-
-        <hr />
-
-        <
-        <asp:Panel ID="Panel1" runat="server" Visible="false">
-            <div class="form-group">
-                <label for="txtCustomerName">Customer Name</label>
-                <asp:TextBox ID="TextBox3" runat="server" ReadOnly="true" />
-            </div>
-
- <div class="form-group">
-     <label for="txtEmail">Email</label>
-     <asp:TextBox ID="TextBox4" runat="server" ReadOnly="true" />
- </div>
-
- <div class="form-group">
-     <label for="txtPhone">Phone</label>
-     <asp:TextBox ID="TextBox5" runat="server" ReadOnly="true" />
- </div>
-
- <div class="form-group">
-     <label for="txtAmount">Amount</label>
-     <asp:TextBox ID="TextBox6" runat="server" TextMode="Number" />
- </div>
-
-
-            
-            <asp:HiddenField ID="HiddenField1" runat="server" />
-            <asp:HiddenField ID="HiddenField2" runat="server" />
-
-            <asp:Button ID="Button2" runat="server" CssClass="btn" Text="Continue & Initiate Payment" OnClick="btnContinue_Click" />
-        </asp:Panel>
-
-        <asp:Label ID="Label1" runat="server" ForeColor="Green" />
-
     </form>
 
     <!-- Bootstrap JS -->

@@ -1,26 +1,25 @@
-﻿using BilklPaymentWenFormPortal.Api;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace BilklPaymentWenFormPortal
+namespace BilklPaymentWenFormPortal.NewForm
 {
     public partial class WebPaymentLoginPage : System.Web.UI.Page
     {
-         protected void Page_Load(object sender, EventArgs e)
-        {
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
 
         }
 
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnLogins_Click(object sender, EventArgs e)
         {
+
             try
             {
                 // Get user input from form
@@ -36,12 +35,12 @@ namespace BilklPaymentWenFormPortal
                 {
                     int roleId = response.Data;
 
-                    
-                    Session["UserID"] = roleId; 
+
+                    Session["UserID"] = roleId;
                     Session["UserName"] = userName;
                     Session["RoleID"] = roleId;
 
-                    
+
 
                     // Redirect based on role
                     switch (roleId)
@@ -86,6 +85,26 @@ namespace BilklPaymentWenFormPortal
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = $"Unexpected Error: {ex.Message}";
             }
+        }
+
+
+       
+
+
+
+
+
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            // Your login logic here
+        }
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            // Clear the form fields
+            txtUsernameOrEmail.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            lblMessage.Text = string.Empty;
         }
 
 

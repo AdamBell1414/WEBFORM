@@ -190,29 +190,34 @@ namespace BilklPaymentWenFormPortal.Api {
             return ((ApiResponseOfInt32)(results[0]));
         }
         
+
+
         /// <remarks/>
-        public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy) {
-            this.CreateUtilityAsync(UtilityName, UtilityCode, CreatedBy, null);
-        }
+        //public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy) {
+        //    this.CreateUtilityAsync(UtilityName, UtilityCode, CreatedBy, null);
+        //}
         
         /// <remarks/>
-        public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy, object userState) {
-            if ((this.CreateUtilityOperationCompleted == null)) {
-                this.CreateUtilityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateUtilityOperationCompleted);
-            }
-            this.InvokeAsync("CreateUtility", new object[] {
-                        UtilityName,
-                        UtilityCode,
-                        CreatedBy}, this.CreateUtilityOperationCompleted, userState);
-        }
+        //public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy, object userState) {
+        //    if ((this.CreateUtilityOperationCompleted == null)) {
+        //        this.CreateUtilityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateUtilityOperationCompleted);
+        //    }
+        //    this.InvokeAsync("CreateUtility", new object[] {
+        //                UtilityName,
+        //                UtilityCode,
+        //                CreatedBy}, this.CreateUtilityOperationCompleted, userState);
+        //}
         
-        private void OnCreateUtilityOperationCompleted(object arg) {
-            if ((this.CreateUtilityCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CreateUtilityCompleted(this, new CreateUtilityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
+        //private void OnCreateUtilityOperationCompleted(object arg) {
+        //    if ((this.CreateUtilityCompleted != null)) {
+        //        System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+        //        this.CreateUtilityCompleted(this, new CreateUtilityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+        //    }
+        //}
         
+
+
+
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateVendor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ApiResponseOfInt32 CreateVendor(string vendorCode, string vendorName, string conatactEmail, string conatatPhone, string password, decimal balance, int createdBy) {

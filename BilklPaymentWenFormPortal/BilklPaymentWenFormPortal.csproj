@@ -71,7 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminPages\AdminDashboard.aspx" />
+    <Content Include="NewForm\AdminDashBoard.aspx" />
     <Content Include="CustomerPages\Customer.aspx" />
+    <Content Include="NewForm\User.aspx" />
+    <Content Include="NewForm\Vendor.aspx" />
+    <Content Include="NewForm\WebPaymentLoginPage.aspx" />
     <Content Include="VendorPages\Vendor.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebPaymentLoginPage.aspx" />
@@ -84,12 +88,41 @@
     <Compile Include="AdminPages\AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="NewForm\AdminDashBoard.aspx.cs">
+      <DependentUpon>AdminDashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewForm\AdminDashBoard.aspx.designer.cs">
+      <DependentUpon>AdminDashBoard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CustomerPages\Customer.aspx.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CustomerPages\Customer.aspx.designer.cs">
       <DependentUpon>Customer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewForm\HttpRequestException.cs" />
+    <Compile Include="NewForm\User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewForm\User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewForm\Vendor.aspx.cs">
+      <DependentUpon>Vendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewForm\Vendor.aspx.designer.cs">
+      <DependentUpon>Vendor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewForm\WebPaymentLoginPage.aspx.cs">
+      <DependentUpon>WebPaymentLoginPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewForm\WebPaymentLoginPage.aspx.designer.cs">
+      <DependentUpon>WebPaymentLoginPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

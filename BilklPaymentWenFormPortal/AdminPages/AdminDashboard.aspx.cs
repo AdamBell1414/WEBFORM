@@ -38,7 +38,7 @@ namespace BilklPaymentWenFormPortal.AdminPages
                 lblVendorMessage.Text = "Vendor created successfully!";
                 ClearVendorForm();
 
-         lblVendorMessage.Text = "Failed to create vendor: " + response.Message;
+               lblVendorMessage.Text = "Failed to create vendor: " + response.Message;
                 //}
             }
             catch (Exception ex)
@@ -84,6 +84,7 @@ namespace BilklPaymentWenFormPortal.AdminPages
                     Label1.Text = "All fields are required.";
                     return;
                 }
+
 
                 var service = new Api.BillPaymentApiEndPoint(); 
 
