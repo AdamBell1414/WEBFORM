@@ -69,12 +69,13 @@ namespace BilklPaymentWenFormPortal.AdminPages
         {
             try
             {
-               
+
               
 
                 string utilityName = txtUtilityName.Text.Trim();
                 string utilityCode = txtUtilityCode.Text.Trim();
                 int createdBy = Convert.ToInt32(Session["UserID"]);
+
 
                 if (string.IsNullOrEmpty(utilityName) || string.IsNullOrEmpty(utilityCode))
                 {
