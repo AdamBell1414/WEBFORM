@@ -16,6 +16,20 @@ namespace BilklPaymentWenFormPortal.AdminPages
            
         }
 
+
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            // Optional: Clear auth cookies
+            Response.Cookies.Clear();
+
+            // Redirect to login
+            Response.Redirect("~/WebPaymentLoginPage.aspx");
+        }
+
         protected void btnCreateVendor_Click(object sender, EventArgs e)
         {
             try

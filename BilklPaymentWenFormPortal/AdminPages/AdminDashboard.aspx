@@ -152,6 +152,17 @@
                 <li class="nav-item"><a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#userModal">Create User</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#utilityModal">Create Utility</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="#list">Vendor Table</a></li>
+
+                 <div class="nav-section">
+<div class="nav-section-title">Account</div>
+<ul class="nav flex-column">
+    <li class="nav-item">
+                <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link text-danger" OnClick="btnLogout_Click">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </asp:LinkButton>
+            </li>
+        </ul>
+    </div>
             </ul>
         </div>
 

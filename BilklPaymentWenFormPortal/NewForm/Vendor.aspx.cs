@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,130 @@ namespace BilklPaymentWenFormPortal.NewForm
         protected void Page_Load(object sender, EventArgs e)
         {
 
+
+
         }
+
+
+
+
+
+
+
+        protected void btnValidate_Click(object sender, EventArgs e)
+        {
+            var service = new Api.BillPaymentApiEndPoint();
+            string vendorCode = txtVendorCode.Text;
+            string reference = txtReference.Text;
+
+
+            var response = service.ValidateReference(vendorCode, reference);
+
+            if (response.Success)
+            {
+                dynamic customer = JsonConvert.DeserializeObject(response.Data);
+
+                txtCustomerName.Text = customer.CustomerName;
+                txtEmail.Text = customer.Email;
+
+
+
+                txtPhone.Text = customer.Phone;
+                hiddenUtilityCode.Value = customer.UtilityCode;
+
+
+                pnlCustomerInfo.Visible = true;
+                lblMessage.Text = "Reference validated. Proceed with payment.";
+            }
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = "Validation failed: " + response.Message;
+            }
+        }
+
+
+        protected void btnContinue_Click(object sender, EventArgs e)
+        {
+            var service = new Api.BillPaymentApiEndPoint();
+
+            string vendorCode = txtVendorCode.Text;
+            string reference = txtReference.Text;
+            string utilityCode = hiddenUtilityCode.Value;
+            decimal amount = decimal.Parse(txtAmount.Text);
+
+            int vendorUserId = Convert.ToInt32(Session["UserID"]);
+
+            var result = service.InitiateVendorPayment(vendorCode, reference, utilityCode, amount, vendorUserId);
+
+            if (result.Success)
+            {
+
+                ClearPaymentForm();
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = "Payment initiated. Vendors ID: " + result.Data;
+                ShowDashboardMessage(lblMessage.Text, true);
+            }
+            else
+            {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = "Payment failed: " + result.Message;
+                ShowDashboardMessage(lblMessage.Text, false);
+            }
+        }
+
+
+
+
+        private void ShowDashboardMessage(string message, bool isSuccess)
+        {
+            lblDashboardMessage.Text = message;
+            lblDashboardMessage.CssClass = isSuccess ? "text-success fw-bold" : "text-danger fw-bold";
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();          
+            Session.Abandon();        
+
+            // Optional: Clear auth cookies
+            Response.Cookies.Clear();
+
+            // Redirect to login
+            Response.Redirect("~/WebPaymentLoginPage.aspx");
+        }
+
+
+
+
+
+        private void ClearPaymentForm()
+        {
+            txtVendorCode.Text = "";
+            txtReference.Text = "";
+            txtCustomerName.Text = "";
+            txtEmail.Text = "";
+            txtPhone.Text = "";
+            txtAmount.Text = "";
+            hiddenUtilityCode.Value = "";
+            pnlCustomerInfo.Visible = false;
+            lblMessage.Text = "";
+        }
+
+
 
         protected void btnCreateCustomer_Click(object sender, EventArgs e)
         {
@@ -49,12 +173,12 @@ namespace BilklPaymentWenFormPortal.NewForm
         }
 
         // Clear the vendor form fields
-        protected void txtSearchCustomer_TextChanged(object sender, EventArgs e)
-        {
-            string keyword = txtSearchVendor.Text.Trim();
-            LoadCustomers(keyword);
-            ClearVendorForm();
-        }
+        //protected void txtSearchCustomer_TextChanged(object sender, EventArgs e)
+        //{
+        //    string keyword = txtSearchVendor.Text.Trim();
+        //    LoadCustomers(keyword);
+        //    ClearVendorForm();
+        //}
 
         private void LoadCustomers(string keyword)
         {
@@ -70,23 +194,23 @@ namespace BilklPaymentWenFormPortal.NewForm
         }
 
 
-        protected void btnProcessPayment_Click(object sender, EventArgs e)
-        {
-            // Payment processing logic
-            string customer = ddlCustomers.SelectedValue;
-            string utility = ddlUtilities.SelectedValue.Split('|')[0];
-            decimal amount = Convert.ToDecimal(txtPaymentAmount.Text);
-            string paymentMethod = ddlPaymentMethod.SelectedValue;
-            string reference = txtReferenceNumber.Text;
+        //protected void btnProcessPayment_Click(object sender, EventArgs e)
+        //{
+        //    // Payment processing logic
+        //    string customer = ddlCustomers.SelectedValue;
+        //    string utility = ddlUtilities.SelectedValue.Split('|')[0];
+        //    decimal amount = Convert.ToDecimal(txtPaymentAmount.Text);
+        //    string paymentMethod = ddlPaymentMethod.SelectedValue;
+        //    string reference = txtReferenceNumber.Text;
 
-            // Process payment here
-            // Update database, call payment gateway, etc.
+        //    // Process payment here
+        //    // Update database, call payment gateway, etc.
 
-            bool isSuccess = ProcessPayment(); // Replace with your actual payment processing logic
+        //    bool isSuccess = ProcessPayment(); // Replace with your actual payment processing logic
 
-            PaymentMessageLabel.Text = "Payment processed successfully!";
-            PaymentMessageLabel.CssClass = "text-success";
-        }
+        //    PaymentMessageLabel.Text = "Payment processed successfully!";
+        //    PaymentMessageLabel.CssClass = "text-success";
+        //}
 
         protected void ddlUtilities_SelectedIndexChanged(object sender, EventArgs e)
         {

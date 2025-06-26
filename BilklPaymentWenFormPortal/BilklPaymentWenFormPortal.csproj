@@ -162,6 +162,12 @@
     <Content Include="Web References\Api\ApiResponseOfString.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Web References\Api\ApiResponseOfBillPaymnet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\Api\ApiResponseOfListOfBillPaymnet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\Api\BillPaymentApiEndPoint.wsdl" />
     <None Include="Web References\Api\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

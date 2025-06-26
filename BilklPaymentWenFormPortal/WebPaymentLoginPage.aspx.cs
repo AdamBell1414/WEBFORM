@@ -53,7 +53,7 @@ namespace BilklPaymentWenFormPortal
                             Response.Redirect("~/UserDashboard.aspx");
                             break;
                         case 3: // Vendor
-                            Response.Redirect("~/VendorPages/Vendor.aspx");
+                            Response.Redirect("~/NewForm/Vendor.aspx");
                             break;
                         case 4: // Customer
                             Response.Redirect("~/CustomerPages/Customer.aspx");
@@ -74,17 +74,17 @@ namespace BilklPaymentWenFormPortal
             catch (ArgumentException ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = $"Input Error: {ex.Message}";
+                lblMessage.Text = $"Input Error: Invalid Credentials ";
             }
             catch (UnauthorizedAccessException ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = $"Access Denied: {ex.Message}";
+                lblMessage.Text = $"Access Denied: ";
             }
             catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = $"Unexpected Error: {ex.Message}";
+                lblMessage.Text = $" Invalid Credentials ";
             }
         }
 

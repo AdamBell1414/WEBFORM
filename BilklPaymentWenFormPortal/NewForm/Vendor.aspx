@@ -496,6 +496,9 @@
 </head>
 
 <body>
+
+    <asp:Label ID="lblDashboardMessage" runat="server" CssClass="fw-bold" />
+
     <form id="form2" runat="server">
         <div class="layout">
             <!-- Enhanced Sidebar -->
@@ -540,85 +543,101 @@
                         </li>
                     </ul>
                 </div>
+
+
+             <div class="nav-section">
+            <div class="nav-section-title">Account</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                            <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link text-danger" OnClick="btnLogout_Click">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
             <!-- Enhanced Main Content -->
             <div class="main">
-                <div class="main-header">
-                    <h2>Welcome back, Vendor</h2>
-                    <p class="subtitle">Here's what's happening with your vendor operations today</p>
+              <div class="main-header">
+    <h2>Welcome back, Vendor</h2>
+    <p class="subtitle">Here's what's happening with your vendor operations today</p>
+</div>
+
+<div class="main-content">
+    <!-- Enhanced Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h5 class="stat-card-title">Vendor Name</h5>
+                <div class="stat-card-icon users">
+                    <i class="fas fa-user"></i>
                 </div>
+            </div>
+            <p class="stat-card-value" id="vendor-name">[Vendor Name]</p>
+        </div>
 
-                <div class="main-content">
-                    <!-- Enhanced Stats Cards -->
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <h5 class="stat-card-title">Total Users</h5>
-                                <div class="stat-card-icon users">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                            </div>
-                            <p class="stat-card-value">45</p>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <h5 class="stat-card-title">Active Utilities</h5>
-                                <div class="stat-card-icon utilities">
-                                    <i class="fas fa-tools"></i>
-                                </div>
-                            </div>
-                            <p class="stat-card-value">5</p>
-                        </div>
-
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <h5 class="stat-card-title">Total Payments</h5>
-                                <div class="stat-card-icon payments">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </div>
-                            </div>
-                            <p class="stat-card-value">(Ugx)12,450</p>
-                        </div>
-                    </div>
-
-                    <!-- Enhanced Customer Table Section -->
-                    <div id="list" class="section">
-                        <div class="section-header">
-                            <h4><i class="fas fa-users me-2"></i>Customer Management</h4>
-                            <p>Search and manage your customer database</p>
-                        </div>
-                        <div class="section-body">
-                            <div class="search-container">
-                                <i class="fas fa-search"></i>
-                                <asp:TextBox ID="txtSearchVendor" runat="server" 
-                                    CssClass="form-control" 
-                                    AutoPostBack="true" 
-                                    OnTextChanged="txtSearchCustomer_TextChanged" 
-                                    Placeholder="Search customers by name or code..." />
-                            </div>
-                            
-                            <div class="table-container">
-                                <asp:GridView ID="gvVendors" runat="server" 
-                                    AutoGenerateColumns="False" 
-                                    CssClass="table table-hover">
-                                    <Columns>
-                                        <asp:BoundField DataField="CustomerCode" HeaderText="Customer Code" />
-                                        <asp:BoundField DataField="CustomerName" HeaderText="Customer Name" />
-                                    </Columns>
-                                    <EmptyDataTemplate>
-                                        <div class="empty-state">
-                                            <i class="fas fa-inbox"></i>
-                                            <h5>No customers found</h5>
-                                            <p>Try adjusting your search criteria or add new customers</p>
-                                        </div>
-                                    </EmptyDataTemplate>
-                                </asp:GridView>
-                            </div>
-                        </div>
-                    </div>
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h5 class="stat-card-title">Total Payments</h5>
+                <div class="stat-card-icon payments">
+                    <i class="fas fa-dollar-sign"></i>
                 </div>
+            </div>
+            <p class="stat-card-value" id="total-payments">[Total Payments]</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h5 class="stat-card-title">Account Balance</h5>
+                <div class="stat-card-icon balance">
+                    <i class="fas fa-wallet"></i>
+                </div>
+            </div>
+            <p class="stat-card-value" id="account-balance">[Account Balance]</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h5 class="stat-card-title">Total Customers</h5>
+                <div class="stat-card-icon customers">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+            <p class="stat-card-value" id="customers-worked">[Customers Worked]</p>
+        </div>
+    </div>
+
+    <!-- Enhanced Customer Table Section -->
+    <div id="list" class="section">
+        <div class="section-header">
+            <h4><i class="fas fa-users me-2"></i>Customer Management</h4>
+            <p>Search and manage your customer database</p>
+        </div>
+        <div class="section-body">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="txtSearchVendor" class="form-control" placeholder="Search customers by name or code..." />
+            </div>
+
+            <div class="table-container">
+                <table id="vendor-table" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Customer Code</th>
+                            <th>Customer Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
             </div>
         </div>
 
@@ -663,117 +682,77 @@
                 </div>
             </div>
         </div>
+<!-- Pay Utilities Modal -->
+<div class="modal fade" id="payUtilitiesModal" tabindex="-1" aria-labelledby="payUtilitiesModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="payUtilitiesModalLabel">
+                    <i class="fas fa-credit-card me-2"></i>Pay Utility Bills
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
 
-        <!-- Pay Utilities Modal -->
-        <div class="modal fade" id="payUtilitiesModal" tabindex="-1" aria-labelledby="payUtilitiesModalLabel">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="payUtilitiesModalLabel">
-                            <i class="fas fa-credit-card me-2"></i>Pay Utility Bills
-                        </h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- Vendor Code -->
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-building me-1"></i>Vendor Code</label>
+                        <asp:TextBox ID="txtVendorCode" runat="server" CssClass="form-control" placeholder="Enter Vendor Code" />
                     </div>
-                    <div class="modal-body">
-                        <div class="row g-4">
 
-                            <!-- Customer Selection -->
+                    <!-- Reference Number -->
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fas fa-hashtag me-1"></i>Reference Number</label>
+                        <asp:TextBox ID="txtReference" runat="server" CssClass="form-control" placeholder="Enter Reference Number" />
+                    </div>
+
+                    <!-- Validate Button -->
+                    <div class="col-12">
+                        <asp:Button ID="btnValidate" runat="server" Text="Validate Reference"
+                                    CssClass="btn btn-warning w-100" OnClick="btnValidate_Click" />
+                    </div>
+
+                    <!-- Validated Info -->
+                    <asp:Panel ID="pnlCustomerInfo" runat="server" Visible="false" CssClass="bg-light p-3 rounded">
+                        <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label"><i class="fas fa-user me-1"></i>Select Customer</label>
-                                <asp:DropDownList ID="ddlCustomers" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="-- Select Customer --" Value="" />
-                                    <asp:ListItem Text="John Doe (CUST001)" Value="CUST001" />
-                                    <asp:ListItem Text="Jane Smith (CUST002)" Value="CUST002" />
-                                    <asp:ListItem Text="Mike Johnson (CUST003)" Value="CUST003" />
-                                    <asp:ListItem Text="Sarah Wilson (CUST004)" Value="CUST004" />
-                                </asp:DropDownList>
+                                <label class="form-label">Customer Name</label>
+                                <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" ReadOnly="true" />
                             </div>
-
-
-
-                            <!-- Utility Selection -->
                             <div class="col-md-6">
-                                <label class="form-label"><i class="fas fa-bolt me-1"></i>Select Utility</label>
-                                <asp:DropDownList ID="ddlUtilities" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlUtilities_SelectedIndexChanged">
-                                    <asp:ListItem Text="-- Select Utility --" Value="" />
-                                    <asp:ListItem Text="Electricity - UMEME" Value="UMEME|50.00" />
-                                    <asp:ListItem Text="Water - NWSC" Value="NWSC|30.00" />
-                                  <%--  <asp:ListItem Text=" - MTN" Value="MTN|25.00" />--%>
-                                    <asp:ListItem Text="DSTV" Value="DSTV|40.00" />
-                                  <%--  <asp:ListItem Text="Gas - Total Uganda" Value="TOTAL|35.00" />--%>
-                                </asp:DropDownList>
+                                <label class="form-label">Email</label>
+                                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" ReadOnly="true" />
                             </div>
-
-                            <!-- Payment Amount -->
                             <div class="col-md-6">
-                                <label class="form-label"><i class="fas fa-dollar-sign me-1"></i>Amount to Pay (Ugx)</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">$</span>
-                                    <asp:TextBox ID="txtPaymentAmount" runat="server" CssClass="form-control" 
-                                        TextMode="Number" placeholder="0.00" step="0.01" min="0" />
-                                </div>
-                                <small class="text-muted">Minimum payment: (Ugx)1.00</small>
+                                <label class="form-label">Phone</label>
+                                <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" ReadOnly="true" />
                             </div>
-
-                            <!-- Payment Method -->
                             <div class="col-md-6">
-                                <label class="form-label"><i class="fas fa-credit-card me-1"></i>Payment Method</label>
-                                <asp:DropDownList ID="ddlPaymentMethod" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="-- Select Payment Method --" Value="" />
-                                    <asp:ListItem Text="Credit Card" Value="CREDIT_CARD" />
-                                    <asp:ListItem Text="Debit Card" Value="DEBIT_CARD" />
-                                    <asp:ListItem Text="Mobile Money - MTN" Value="MTN_MOMO" />
-                                    <asp:ListItem Text="Mobile Money - Airtel" Value="AIRTEL_MONEY" />
-                                    <asp:ListItem Text="Bank Transfer" Value="BANK_TRANSFER" />
-                                </asp:DropDownList>
-                            </div>
-
-                            <!-- Reference Number -->
-                            <div class="col-12">
-                                <label class="form-label"><i class="fas fa-hashtag me-1"></i>Reference Number (Optional)</label>
-                                <asp:TextBox ID="txtReferenceNumber" runat="server" CssClass="form-control" 
-                                    placeholder="Enter reference number or leave blank for auto-generation" />
-                                <small class="text-muted">This will help you track your payment</small>
-                            </div>
-
-                            <!-- Payment Summary -->
-                            <div class="col-12">
-                                <div class="payment-summary p-3 bg-light rounded">
-                                    <h6 class="mb-3"><i class="fas fa-receipt me-2"></i>Payment Summary</h6>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <strong>Customer:</strong>
-                                            <span id="summaryCustomer" class="text-muted">Not selected</span>
-                                        </div>
-                                        <div class="col-6">
-                                            <strong>Utility:</strong>
-                                            <span id="summaryUtility" class="text-muted">Not selected</span>
-                                        </div>
-                                        <div class="col-6 mt-2">
-                                            <strong>Amount:</strong>
-                                            <span id="summaryAmount" class="text-success fw-bold">(Ugx)0.00</span>
-                                        </div>
-                                        <div class="col-6 mt-2">
-                                            <strong>Payment Method:</strong>
-                                            <span id="summaryMethod" class="text-muted">Not selected</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <label class="form-label">Amount</label>
+                                <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control" TextMode="Number" />
                             </div>
                         </div>
+                    </asp:Panel>
+
+                    <!-- Hidden Utility Code -->
+                    <asp:HiddenField ID="hiddenUtilityCode" runat="server" />
+
+                    <!-- Message Label -->
+                    <div class="col-12">
+                        <asp:Label ID="lblMessage" runat="server" CssClass="fw-bold"></asp:Label>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            <i class="fas fa-times me-1"></i>Cancel
-                        </button>
-                        <asp:Button ID="btnProcessPayment" runat="server" Text="Process Payment" 
-                            CssClass="btn btn-primary btn-lg" OnClick="btnProcessPayment_Click" 
-                            OnClientClick="return validatePaymentForm();" />
-                    </div>
-                    <asp:Label ID="PaymentMessageLabel" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
                 </div>
             </div>
+            <div class="modal-footer">
+                <asp:Button ID="btnContinue" runat="server" Text="Confirm Payment"
+                            CssClass="btn btn-success" OnClick="btnContinue_Click" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
         </div>
+    </div>
+</div>
+
 
         <!-- Enhanced Toast Notifications -->
         <div class="toast-container position-fixed top-0 end-0 p-3">

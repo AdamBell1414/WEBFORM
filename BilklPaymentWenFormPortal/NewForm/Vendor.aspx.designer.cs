@@ -15,6 +15,15 @@ namespace BilklPaymentWenFormPortal.NewForm
     {
 
         /// <summary>
+        /// lblDashboardMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDashboardMessage;
+
+        /// <summary>
         /// form2 control.
         /// </summary>
         /// <remarks>
@@ -24,22 +33,13 @@ namespace BilklPaymentWenFormPortal.NewForm
         protected global::System.Web.UI.HtmlControls.HtmlForm form2;
 
         /// <summary>
-        /// txtSearchVendor control.
+        /// btnLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchVendor;
-
-        /// <summary>
-        /// gvVendors control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvVendors;
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
 
         /// <summary>
         /// txtUserName control.
@@ -96,67 +96,103 @@ namespace BilklPaymentWenFormPortal.NewForm
         protected global::System.Web.UI.WebControls.Label MessageLabel1;
 
         /// <summary>
-        /// ddlCustomers control.
+        /// txtVendorCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomers;
+        protected global::System.Web.UI.WebControls.TextBox txtVendorCode;
 
         /// <summary>
-        /// ddlUtilities control.
+        /// txtReference control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUtilities;
+        protected global::System.Web.UI.WebControls.TextBox txtReference;
 
         /// <summary>
-        /// txtPaymentAmount control.
+        /// btnValidate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPaymentAmount;
+        protected global::System.Web.UI.WebControls.Button btnValidate;
 
         /// <summary>
-        /// ddlPaymentMethod control.
+        /// pnlCustomerInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentMethod;
+        protected global::System.Web.UI.WebControls.Panel pnlCustomerInfo;
 
         /// <summary>
-        /// txtReferenceNumber control.
+        /// txtCustomerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReferenceNumber;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
 
         /// <summary>
-        /// btnProcessPayment control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProcessPayment;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// PaymentMessageLabel control.
+        /// txtPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PaymentMessageLabel;
+        protected global::System.Web.UI.WebControls.TextBox txtPhone;
+
+        /// <summary>
+        /// txtAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAmount;
+
+        /// <summary>
+        /// hiddenUtilityCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenUtilityCode;
+
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        /// <summary>
+        /// btnContinue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnContinue;
 
         /// <summary>
         /// MessageLabel control.

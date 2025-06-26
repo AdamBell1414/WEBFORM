@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
       <s:element name="CreateUser">
         <s:complexType>
           <s:sequence>
@@ -138,6 +139,123 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetPendingTransactions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPendingTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPendingTransactionsResult" type="tns:ApiResponseOfListOfBillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ApiResponseOfListOfBillPaymnet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfBillPaymnet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBillPaymnet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BillPaymnet" nillable="true" type="tns:BillPaymnet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillPaymnet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordHash" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="UtilityToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UtilityReceiptNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VendorID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VendorName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VendorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactPhone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UtilityID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UtilityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UtilityCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UtilityIsActive" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RegisteredBy" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountBalance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPaymentsMade" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FailedPayments" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalTransactions" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomersWorked" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionID" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SentToMomo" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="UtilityTransactionReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiptNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessedAt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MomoStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RequestTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawRequest" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RawResponse" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LogID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Module" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LogFilePath" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateUtilityTransactionResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bill" type="tns:BillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUtilityTransactionResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUtilityTransactionResultResult" type="tns:ApiResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVendorDashboardInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVendorDashboardInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVendorDashboardInfoResult" type="tns:ApiResponseOfBillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ApiResponseOfBillPaymnet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:BillPaymnet" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="CreateUserSoapIn">
@@ -182,6 +300,24 @@
   <wsdl:message name="InitiateVendorPaymentSoapOut">
     <wsdl:part name="parameters" element="tns:InitiateVendorPaymentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetPendingTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPendingTransactions" />
+  </wsdl:message>
+  <wsdl:message name="GetPendingTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPendingTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUtilityTransactionResultSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUtilityTransactionResult" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUtilityTransactionResultSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUtilityTransactionResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVendorDashboardInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVendorDashboardInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetVendorDashboardInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVendorDashboardInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="BillPaymentApiEndPointSoap">
     <wsdl:operation name="CreateUser">
       <wsdl:input message="tns:CreateUserSoapIn" />
@@ -210,6 +346,18 @@
     <wsdl:operation name="InitiateVendorPayment">
       <wsdl:input message="tns:InitiateVendorPaymentSoapIn" />
       <wsdl:output message="tns:InitiateVendorPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransactions">
+      <wsdl:input message="tns:GetPendingTransactionsSoapIn" />
+      <wsdl:output message="tns:GetPendingTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUtilityTransactionResult">
+      <wsdl:input message="tns:UpdateUtilityTransactionResultSoapIn" />
+      <wsdl:output message="tns:UpdateUtilityTransactionResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorDashboardInfo">
+      <wsdl:input message="tns:GetVendorDashboardInfoSoapIn" />
+      <wsdl:output message="tns:GetVendorDashboardInfoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BillPaymentApiEndPointSoap" type="tns:BillPaymentApiEndPointSoap">
@@ -277,6 +425,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetPendingTransactions">
+      <soap:operation soapAction="http://tempuri.org/GetPendingTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUtilityTransactionResult">
+      <soap:operation soapAction="http://tempuri.org/UpdateUtilityTransactionResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorDashboardInfo">
+      <soap:operation soapAction="http://tempuri.org/GetVendorDashboardInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BillPaymentApiEndPointSoap12" type="tns:BillPaymentApiEndPointSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -336,6 +511,33 @@
     </wsdl:operation>
     <wsdl:operation name="InitiateVendorPayment">
       <soap12:operation soapAction="http://tempuri.org/InitiateVendorPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTransactions">
+      <soap12:operation soapAction="http://tempuri.org/GetPendingTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUtilityTransactionResult">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUtilityTransactionResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorDashboardInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetVendorDashboardInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

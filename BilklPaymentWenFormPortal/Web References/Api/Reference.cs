@@ -43,6 +43,12 @@ namespace BilklPaymentWenFormPortal.Api {
         
         private System.Threading.SendOrPostCallback InitiateVendorPaymentOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetPendingTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateUtilityTransactionResultOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetVendorDashboardInfoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -101,6 +107,15 @@ namespace BilklPaymentWenFormPortal.Api {
         
         /// <remarks/>
         public event InitiateVendorPaymentCompletedEventHandler InitiateVendorPaymentCompleted;
+        
+        /// <remarks/>
+        public event GetPendingTransactionsCompletedEventHandler GetPendingTransactionsCompleted;
+        
+        /// <remarks/>
+        public event UpdateUtilityTransactionResultCompletedEventHandler UpdateUtilityTransactionResultCompleted;
+        
+        /// <remarks/>
+        public event GetVendorDashboardInfoCompletedEventHandler GetVendorDashboardInfoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -190,34 +205,29 @@ namespace BilklPaymentWenFormPortal.Api {
             return ((ApiResponseOfInt32)(results[0]));
         }
         
-
-
         /// <remarks/>
-        //public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy) {
-        //    this.CreateUtilityAsync(UtilityName, UtilityCode, CreatedBy, null);
-        //}
+        public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy) {
+            this.CreateUtilityAsync(UtilityName, UtilityCode, CreatedBy, null);
+        }
         
         /// <remarks/>
-        //public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy, object userState) {
-        //    if ((this.CreateUtilityOperationCompleted == null)) {
-        //        this.CreateUtilityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateUtilityOperationCompleted);
-        //    }
-        //    this.InvokeAsync("CreateUtility", new object[] {
-        //                UtilityName,
-        //                UtilityCode,
-        //                CreatedBy}, this.CreateUtilityOperationCompleted, userState);
-        //}
+        public void CreateUtilityAsync(string UtilityName, string UtilityCode, int CreatedBy, object userState) {
+            if ((this.CreateUtilityOperationCompleted == null)) {
+                this.CreateUtilityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateUtilityOperationCompleted);
+            }
+            this.InvokeAsync("CreateUtility", new object[] {
+                        UtilityName,
+                        UtilityCode,
+                        CreatedBy}, this.CreateUtilityOperationCompleted, userState);
+        }
         
-        //private void OnCreateUtilityOperationCompleted(object arg) {
-        //    if ((this.CreateUtilityCompleted != null)) {
-        //        System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-        //        this.CreateUtilityCompleted(this, new CreateUtilityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-        //    }
-        //}
+        private void OnCreateUtilityOperationCompleted(object arg) {
+            if ((this.CreateUtilityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CreateUtilityCompleted(this, new CreateUtilityCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
-
-
-
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateVendor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ApiResponseOfInt32 CreateVendor(string vendorCode, string vendorName, string conatactEmail, string conatatPhone, string password, decimal balance, int createdBy) {
@@ -359,6 +369,91 @@ namespace BilklPaymentWenFormPortal.Api {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetPendingTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfListOfBillPaymnet GetPendingTransactions() {
+            object[] results = this.Invoke("GetPendingTransactions", new object[0]);
+            return ((ApiResponseOfListOfBillPaymnet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPendingTransactionsAsync() {
+            this.GetPendingTransactionsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetPendingTransactionsAsync(object userState) {
+            if ((this.GetPendingTransactionsOperationCompleted == null)) {
+                this.GetPendingTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPendingTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("GetPendingTransactions", new object[0], this.GetPendingTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnGetPendingTransactionsOperationCompleted(object arg) {
+            if ((this.GetPendingTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPendingTransactionsCompleted(this, new GetPendingTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUtilityTransactionResult", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfString UpdateUtilityTransactionResult(BillPaymnet bill) {
+            object[] results = this.Invoke("UpdateUtilityTransactionResult", new object[] {
+                        bill});
+            return ((ApiResponseOfString)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateUtilityTransactionResultAsync(BillPaymnet bill) {
+            this.UpdateUtilityTransactionResultAsync(bill, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateUtilityTransactionResultAsync(BillPaymnet bill, object userState) {
+            if ((this.UpdateUtilityTransactionResultOperationCompleted == null)) {
+                this.UpdateUtilityTransactionResultOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateUtilityTransactionResultOperationCompleted);
+            }
+            this.InvokeAsync("UpdateUtilityTransactionResult", new object[] {
+                        bill}, this.UpdateUtilityTransactionResultOperationCompleted, userState);
+        }
+        
+        private void OnUpdateUtilityTransactionResultOperationCompleted(object arg) {
+            if ((this.UpdateUtilityTransactionResultCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateUtilityTransactionResultCompleted(this, new UpdateUtilityTransactionResultCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetVendorDashboardInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfBillPaymnet GetVendorDashboardInfo(int userId) {
+            object[] results = this.Invoke("GetVendorDashboardInfo", new object[] {
+                        userId});
+            return ((ApiResponseOfBillPaymnet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetVendorDashboardInfoAsync(int userId) {
+            this.GetVendorDashboardInfoAsync(userId, null);
+        }
+        
+        /// <remarks/>
+        public void GetVendorDashboardInfoAsync(int userId, object userState) {
+            if ((this.GetVendorDashboardInfoOperationCompleted == null)) {
+                this.GetVendorDashboardInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetVendorDashboardInfoOperationCompleted);
+            }
+            this.InvokeAsync("GetVendorDashboardInfo", new object[] {
+                        userId}, this.GetVendorDashboardInfoOperationCompleted, userState);
+        }
+        
+        private void OnGetVendorDashboardInfoOperationCompleted(object arg) {
+            if ((this.GetVendorDashboardInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetVendorDashboardInfoCompleted(this, new GetVendorDashboardInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -413,6 +508,712 @@ namespace BilklPaymentWenFormPortal.Api {
         
         /// <remarks/>
         public int Data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ApiResponseOfBillPaymnet {
+        
+        private bool successField;
+        
+        private string messageField;
+        
+        private BillPaymnet dataField;
+        
+        /// <remarks/>
+        public bool Success {
+            get {
+                return this.successField;
+            }
+            set {
+                this.successField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BillPaymnet Data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BillPaymnet {
+        
+        private System.Nullable<int> userIDField;
+        
+        private string usernameField;
+        
+        private string passwordHashField;
+        
+        private string emailField;
+        
+        private string phoneNumberField;
+        
+        private string roleField;
+        
+        private System.Nullable<bool> isActiveField;
+        
+        private System.Nullable<System.DateTime> createdAtField;
+        
+        private string utilityTokenField;
+        
+        private string utilityReceiptNoField;
+        
+        private System.Nullable<int> vendorIDField;
+        
+        private string vendorNameField;
+        
+        private string contactEmailField;
+        
+        private string vendorCodeField;
+        
+        private string contactPhoneField;
+        
+        private System.Nullable<decimal> balanceField;
+        
+        private System.Nullable<int> createdByField;
+        
+        private System.Nullable<int> utilityIDField;
+        
+        private string utilityNameField;
+        
+        private string utilityCodeField;
+        
+        private System.Nullable<bool> utilityIsActiveField;
+        
+        private System.Nullable<int> registeredByField;
+        
+        private System.Nullable<int> customerIDField;
+        
+        private string referenceNumberField;
+        
+        private string customerNameField;
+        
+        private System.Nullable<decimal> accountBalanceField;
+        
+        private decimal totalPaymentsMadeField;
+        
+        private int failedPaymentsField;
+        
+        private int totalTransactionsField;
+        
+        private int customersWorkedField;
+        
+        private System.Nullable<System.Guid> transactionIDField;
+        
+        private System.Nullable<decimal> amountField;
+        
+        private string statusField;
+        
+        private System.Nullable<bool> sentToMomoField;
+        
+        private string utilityTransactionReferenceField;
+        
+        private string receiptNumberField;
+        
+        private System.Nullable<System.DateTime> processedAtField;
+        
+        private System.Nullable<int> requestIDField;
+        
+        private string momoStatusField;
+        
+        private System.Nullable<System.DateTime> requestTimeField;
+        
+        private System.Nullable<System.DateTime> responseTimeField;
+        
+        private string rawRequestField;
+        
+        private string rawResponseField;
+        
+        private System.Nullable<int> logIDField;
+        
+        private string actionField;
+        
+        private string moduleField;
+        
+        private string iPAddressField;
+        
+        private string responseStatusField;
+        
+        private string logFilePathField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> UserID {
+            get {
+                return this.userIDField;
+            }
+            set {
+                this.userIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PasswordHash {
+            get {
+                return this.passwordHashField;
+            }
+            set {
+                this.passwordHashField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PhoneNumber {
+            get {
+                return this.phoneNumberField;
+            }
+            set {
+                this.phoneNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Role {
+            get {
+                return this.roleField;
+            }
+            set {
+                this.roleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsActive {
+            get {
+                return this.isActiveField;
+            }
+            set {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> CreatedAt {
+            get {
+                return this.createdAtField;
+            }
+            set {
+                this.createdAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UtilityToken {
+            get {
+                return this.utilityTokenField;
+            }
+            set {
+                this.utilityTokenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UtilityReceiptNo {
+            get {
+                return this.utilityReceiptNoField;
+            }
+            set {
+                this.utilityReceiptNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> VendorID {
+            get {
+                return this.vendorIDField;
+            }
+            set {
+                this.vendorIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VendorName {
+            get {
+                return this.vendorNameField;
+            }
+            set {
+                this.vendorNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ContactEmail {
+            get {
+                return this.contactEmailField;
+            }
+            set {
+                this.contactEmailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VendorCode {
+            get {
+                return this.vendorCodeField;
+            }
+            set {
+                this.vendorCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ContactPhone {
+            get {
+                return this.contactPhoneField;
+            }
+            set {
+                this.contactPhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Balance {
+            get {
+                return this.balanceField;
+            }
+            set {
+                this.balanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> CreatedBy {
+            get {
+                return this.createdByField;
+            }
+            set {
+                this.createdByField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> UtilityID {
+            get {
+                return this.utilityIDField;
+            }
+            set {
+                this.utilityIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UtilityName {
+            get {
+                return this.utilityNameField;
+            }
+            set {
+                this.utilityNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UtilityCode {
+            get {
+                return this.utilityCodeField;
+            }
+            set {
+                this.utilityCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> UtilityIsActive {
+            get {
+                return this.utilityIsActiveField;
+            }
+            set {
+                this.utilityIsActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> RegisteredBy {
+            get {
+                return this.registeredByField;
+            }
+            set {
+                this.registeredByField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> CustomerID {
+            get {
+                return this.customerIDField;
+            }
+            set {
+                this.customerIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReferenceNumber {
+            get {
+                return this.referenceNumberField;
+            }
+            set {
+                this.referenceNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CustomerName {
+            get {
+                return this.customerNameField;
+            }
+            set {
+                this.customerNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> AccountBalance {
+            get {
+                return this.accountBalanceField;
+            }
+            set {
+                this.accountBalanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal TotalPaymentsMade {
+            get {
+                return this.totalPaymentsMadeField;
+            }
+            set {
+                this.totalPaymentsMadeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int FailedPayments {
+            get {
+                return this.failedPaymentsField;
+            }
+            set {
+                this.failedPaymentsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int TotalTransactions {
+            get {
+                return this.totalTransactionsField;
+            }
+            set {
+                this.totalTransactionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CustomersWorked {
+            get {
+                return this.customersWorkedField;
+            }
+            set {
+                this.customersWorkedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.Guid> TransactionID {
+            get {
+                return this.transactionIDField;
+            }
+            set {
+                this.transactionIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> SentToMomo {
+            get {
+                return this.sentToMomoField;
+            }
+            set {
+                this.sentToMomoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UtilityTransactionReference {
+            get {
+                return this.utilityTransactionReferenceField;
+            }
+            set {
+                this.utilityTransactionReferenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReceiptNumber {
+            get {
+                return this.receiptNumberField;
+            }
+            set {
+                this.receiptNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> ProcessedAt {
+            get {
+                return this.processedAtField;
+            }
+            set {
+                this.processedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> RequestID {
+            get {
+                return this.requestIDField;
+            }
+            set {
+                this.requestIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MomoStatus {
+            get {
+                return this.momoStatusField;
+            }
+            set {
+                this.momoStatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> RequestTime {
+            get {
+                return this.requestTimeField;
+            }
+            set {
+                this.requestTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> ResponseTime {
+            get {
+                return this.responseTimeField;
+            }
+            set {
+                this.responseTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RawRequest {
+            get {
+                return this.rawRequestField;
+            }
+            set {
+                this.rawRequestField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RawResponse {
+            get {
+                return this.rawResponseField;
+            }
+            set {
+                this.rawResponseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> LogID {
+            get {
+                return this.logIDField;
+            }
+            set {
+                this.logIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Action {
+            get {
+                return this.actionField;
+            }
+            set {
+                this.actionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Module {
+            get {
+                return this.moduleField;
+            }
+            set {
+                this.moduleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IPAddress {
+            get {
+                return this.iPAddressField;
+            }
+            set {
+                this.iPAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ResponseStatus {
+            get {
+                return this.responseStatusField;
+            }
+            set {
+                this.responseStatusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LogFilePath {
+            get {
+                return this.logFilePathField;
+            }
+            set {
+                this.logFilePathField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ApiResponseOfListOfBillPaymnet {
+        
+        private bool successField;
+        
+        private string messageField;
+        
+        private BillPaymnet[] dataField;
+        
+        /// <remarks/>
+        public bool Success {
+            get {
+                return this.successField;
+            }
+            set {
+                this.successField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BillPaymnet[] Data {
             get {
                 return this.dataField;
             }
@@ -645,6 +1446,84 @@ namespace BilklPaymentWenFormPortal.Api {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((ApiResponseOfString)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetPendingTransactionsCompletedEventHandler(object sender, GetPendingTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPendingTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPendingTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfListOfBillPaymnet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfListOfBillPaymnet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void UpdateUtilityTransactionResultCompletedEventHandler(object sender, UpdateUtilityTransactionResultCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateUtilityTransactionResultCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateUtilityTransactionResultCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfString Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfString)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetVendorDashboardInfoCompletedEventHandler(object sender, GetVendorDashboardInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetVendorDashboardInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetVendorDashboardInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfBillPaymnet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfBillPaymnet)(this.results[0]));
             }
         }
     }
