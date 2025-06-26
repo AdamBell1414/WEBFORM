@@ -36,6 +36,10 @@ namespace BilklPaymentWenFormPortal
 
                     
                     Session["UserID"] = roleId; 
+                    Session["UserName"] = userName;
+                    Session["RoleID"] = roleId;
+
+                    
 
                     // Redirect based on role
                     switch (roleId)
