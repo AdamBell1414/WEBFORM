@@ -29,6 +29,7 @@ namespace BilklPaymentWenFormPortal.AdminPages
                 decimal balance = string.IsNullOrEmpty(txtVendorBalance.Text) ? 0 : Convert.ToDecimal(txtVendorBalance.Text);
                 string password = txtVendorPassword.Text.Trim();
                 int createdBy = Convert.ToInt32(Session["UserID"]);
+              
 
                 var response = service.CreateVendor(vendorCode, vendorName, contactEmail, contactPhone, password, balance, createdBy);
 
@@ -69,12 +70,13 @@ namespace BilklPaymentWenFormPortal.AdminPages
         {
             try
             {
-               
+
               
 
                 string utilityName = txtUtilityName.Text.Trim();
                 string utilityCode = txtUtilityCode.Text.Trim();
                 int createdBy = Convert.ToInt32(Session["UserID"]);
+
 
                 if (string.IsNullOrEmpty(utilityName) || string.IsNullOrEmpty(utilityCode))
                 {

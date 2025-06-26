@@ -98,6 +98,46 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ValidateReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vendorCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="referenceNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateReferenceResult" type="tns:ApiResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ApiResponseOfString">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InitiateVendorPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vendorCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="referenceNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="utilityCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="vendorUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitiateVendorPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InitiateVendorPaymentResult" type="tns:ApiResponseOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="CreateUserSoapIn">
@@ -130,6 +170,18 @@
   <wsdl:message name="LoginUserSoapOut">
     <wsdl:part name="parameters" element="tns:LoginUserResponse" />
   </wsdl:message>
+  <wsdl:message name="ValidateReferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateReference" />
+  </wsdl:message>
+  <wsdl:message name="ValidateReferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateReferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="InitiateVendorPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:InitiateVendorPayment" />
+  </wsdl:message>
+  <wsdl:message name="InitiateVendorPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:InitiateVendorPaymentResponse" />
+  </wsdl:message>
   <wsdl:portType name="BillPaymentApiEndPointSoap">
     <wsdl:operation name="CreateUser">
       <wsdl:input message="tns:CreateUserSoapIn" />
@@ -150,6 +202,14 @@
     <wsdl:operation name="LoginUser">
       <wsdl:input message="tns:LoginUserSoapIn" />
       <wsdl:output message="tns:LoginUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateReference">
+      <wsdl:input message="tns:ValidateReferenceSoapIn" />
+      <wsdl:output message="tns:ValidateReferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InitiateVendorPayment">
+      <wsdl:input message="tns:InitiateVendorPaymentSoapIn" />
+      <wsdl:output message="tns:InitiateVendorPaymentSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BillPaymentApiEndPointSoap" type="tns:BillPaymentApiEndPointSoap">
@@ -199,6 +259,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ValidateReference">
+      <soap:operation soapAction="http://tempuri.org/ValidateReference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitiateVendorPayment">
+      <soap:operation soapAction="http://tempuri.org/InitiateVendorPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BillPaymentApiEndPointSoap12" type="tns:BillPaymentApiEndPointSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -240,6 +318,24 @@
     </wsdl:operation>
     <wsdl:operation name="LoginUser">
       <soap12:operation soapAction="http://tempuri.org/LoginUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateReference">
+      <soap12:operation soapAction="http://tempuri.org/ValidateReference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitiateVendorPayment">
+      <soap12:operation soapAction="http://tempuri.org/InitiateVendorPayment" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

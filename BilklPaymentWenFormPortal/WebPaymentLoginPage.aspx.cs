@@ -24,50 +24,68 @@ namespace BilklPaymentWenFormPortal
                 // Get user input from form
                 string userName = txtUsernameOrEmail.Text.Trim();
                 string password = txtPassword.Text.Trim();
-                var Service = new Api.BillPaymentApiEndPoint();
 
+                // Call your Web Service login method
+                var service = new Api.BillPaymentApiEndPoint();
 
-                var response = Service.LoginUser(userName, password);
+                var response = service.LoginUser(userName, password);
 
                 if (response != null && response.Success)
                 {
                     int roleId = response.Data;
 
-                    // Now use roleId to redirect user
+                    
+                    Session["UserID"] = roleId; 
+                    Session["UserName"] = userName;
+                    Session["RoleID"] = roleId;
+
+                    
+
+                    // Redirect based on role
                     switch (roleId)
                     {
-
-                        case 1:
+                        case 1: // Admin
                             Response.Redirect("~/AdminPages/AdminDashboard.aspx");
                             break;
-                        case 2:
+                        case 2: // User
                             Response.Redirect("~/UserDashboard.aspx");
                             break;
-                        case 3:
+                        case 3: // Vendor
                             Response.Redirect("~/VendorPages/Vendor.aspx");
                             break;
-                        case 4:
-                            Response.Redirect("~/Customer.aspx");
+                        case 4: // Customer
+                            Response.Redirect("~/CustomerPages/Customer.aspx");
                             break;
                         default:
+                            lblMessage.ForeColor = System.Drawing.Color.Red;
                             lblMessage.Text = "Login failed or unknown role. Please contact support.";
                             break;
                     }
                 }
+                else
+                {
+                    // Login failed
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    lblMessage.Text = "Invalid username or password.";
+                }
             }
             catch (ArgumentException ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = $"Input Error: {ex.Message}";
             }
             catch (UnauthorizedAccessException ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = $"Access Denied: {ex.Message}";
             }
             catch (Exception ex)
             {
+                lblMessage.ForeColor = System.Drawing.Color.Red;
                 lblMessage.Text = $"Unexpected Error: {ex.Message}";
             }
         }
+
 
     }
 }

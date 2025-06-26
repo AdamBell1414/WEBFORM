@@ -39,6 +39,10 @@ namespace BilklPaymentWenFormPortal.Api {
         
         private System.Threading.SendOrPostCallback LoginUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ValidateReferenceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InitiateVendorPaymentOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -91,6 +95,12 @@ namespace BilklPaymentWenFormPortal.Api {
         
         /// <remarks/>
         public event LoginUserCompletedEventHandler LoginUserCompleted;
+        
+        /// <remarks/>
+        public event ValidateReferenceCompletedEventHandler ValidateReferenceCompleted;
+        
+        /// <remarks/>
+        public event InitiateVendorPaymentCompletedEventHandler InitiateVendorPaymentCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -276,6 +286,74 @@ namespace BilklPaymentWenFormPortal.Api {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidateReference", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfString ValidateReference(string vendorCode, string referenceNumber) {
+            object[] results = this.Invoke("ValidateReference", new object[] {
+                        vendorCode,
+                        referenceNumber});
+            return ((ApiResponseOfString)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidateReferenceAsync(string vendorCode, string referenceNumber) {
+            this.ValidateReferenceAsync(vendorCode, referenceNumber, null);
+        }
+        
+        /// <remarks/>
+        public void ValidateReferenceAsync(string vendorCode, string referenceNumber, object userState) {
+            if ((this.ValidateReferenceOperationCompleted == null)) {
+                this.ValidateReferenceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidateReferenceOperationCompleted);
+            }
+            this.InvokeAsync("ValidateReference", new object[] {
+                        vendorCode,
+                        referenceNumber}, this.ValidateReferenceOperationCompleted, userState);
+        }
+        
+        private void OnValidateReferenceOperationCompleted(object arg) {
+            if ((this.ValidateReferenceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidateReferenceCompleted(this, new ValidateReferenceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InitiateVendorPayment", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfString InitiateVendorPayment(string vendorCode, string referenceNumber, string utilityCode, decimal amount, int vendorUserID) {
+            object[] results = this.Invoke("InitiateVendorPayment", new object[] {
+                        vendorCode,
+                        referenceNumber,
+                        utilityCode,
+                        amount,
+                        vendorUserID});
+            return ((ApiResponseOfString)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InitiateVendorPaymentAsync(string vendorCode, string referenceNumber, string utilityCode, decimal amount, int vendorUserID) {
+            this.InitiateVendorPaymentAsync(vendorCode, referenceNumber, utilityCode, amount, vendorUserID, null);
+        }
+        
+        /// <remarks/>
+        public void InitiateVendorPaymentAsync(string vendorCode, string referenceNumber, string utilityCode, decimal amount, int vendorUserID, object userState) {
+            if ((this.InitiateVendorPaymentOperationCompleted == null)) {
+                this.InitiateVendorPaymentOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInitiateVendorPaymentOperationCompleted);
+            }
+            this.InvokeAsync("InitiateVendorPayment", new object[] {
+                        vendorCode,
+                        referenceNumber,
+                        utilityCode,
+                        amount,
+                        vendorUserID}, this.InitiateVendorPaymentOperationCompleted, userState);
+        }
+        
+        private void OnInitiateVendorPaymentOperationCompleted(object arg) {
+            if ((this.InitiateVendorPaymentCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InitiateVendorPaymentCompleted(this, new InitiateVendorPaymentCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -330,6 +408,51 @@ namespace BilklPaymentWenFormPortal.Api {
         
         /// <remarks/>
         public int Data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ApiResponseOfString {
+        
+        private bool successField;
+        
+        private string messageField;
+        
+        private string dataField;
+        
+        /// <remarks/>
+        public bool Success {
+            get {
+                return this.successField;
+            }
+            set {
+                this.successField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Data {
             get {
                 return this.dataField;
             }
@@ -465,6 +588,58 @@ namespace BilklPaymentWenFormPortal.Api {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((ApiResponseOfInt32)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ValidateReferenceCompletedEventHandler(object sender, ValidateReferenceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidateReferenceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidateReferenceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfString Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfString)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void InitiateVendorPaymentCompletedEventHandler(object sender, InitiateVendorPaymentCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InitiateVendorPaymentCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InitiateVendorPaymentCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfString Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfString)(this.results[0]));
             }
         }
     }
