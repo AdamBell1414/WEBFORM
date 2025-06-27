@@ -24,6 +24,24 @@ namespace BilklPaymentWenFormPortal.CustomerPages
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+
+        /// <summary>
+        /// txtSearchVendor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchVendor;
+
+        /// <summary>
         /// gvTransactions control.
         /// </summary>
         /// <remarks>
@@ -105,13 +123,13 @@ namespace BilklPaymentWenFormPortal.CustomerPages
         protected global::System.Web.UI.WebControls.Button btnCreateVendor;
 
         /// <summary>
-        /// Label2 control.
+        /// txtReferenceNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.TextBox txtReferenceNumber;
 
         /// <summary>
         /// txtUserName control.
@@ -159,15 +177,6 @@ namespace BilklPaymentWenFormPortal.CustomerPages
         protected global::System.Web.UI.WebControls.Button btnCreateUser;
 
         /// <summary>
-        /// MessageLabel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageLabel1;
-
-        /// <summary>
         /// txtUtilityName control.
         /// </summary>
         /// <remarks>
@@ -195,6 +204,24 @@ namespace BilklPaymentWenFormPortal.CustomerPages
         protected global::System.Web.UI.WebControls.Button btnCreateUtility;
 
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// Label444 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label444;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -202,6 +229,15 @@ namespace BilklPaymentWenFormPortal.CustomerPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// MessageLabel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MessageLabel1;
 
         /// <summary>
         /// MessageLabel control.

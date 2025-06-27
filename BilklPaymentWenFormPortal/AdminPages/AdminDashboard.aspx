@@ -156,6 +156,8 @@
                  <div class="nav-section">
 <div class="nav-section-title">Account</div>
 <ul class="nav flex-column">
+
+    <!--LogOut-->
     <li class="nav-item">
                 <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link text-danger" OnClick="btnLogout_Click">
                     <i class="fas fa-sign-out-alt me-2"></i>Logout
@@ -269,6 +271,7 @@
                         <h5 class="modal-title">Create User</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
+
                     <div class="modal-body">
                         <label>Username</label>
                         <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control mb-2" />
@@ -292,8 +295,15 @@
             </div>
         </div>
 
+
+
         <asp:Label ID="Label4" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+
+
+
             <!-- Utility Modal -->
+
+
         <div class="modal fade" id="utilityModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -311,6 +321,10 @@
                     <div class="modal-footer">
                         <asp:Button ID="btnCreateUtility" runat="server" Text="Create Utility" CssClass="btn btn-warning text-dark" OnClick="btnCreateUtility_Click" />
                     </div>
+
+    <asp:Label ID="Label5" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+
+
                     <!-- Vendor Modal Message Label -->
 <asp:Label ID="Label1" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
 
@@ -321,7 +335,6 @@
 </form>
 
 
-    <asp:Label ID="Label5" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
 
 </body>
 </html>

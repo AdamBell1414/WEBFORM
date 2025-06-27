@@ -13,6 +13,12 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
+    <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
       :root {
           --primary-color: #6366f1;
@@ -545,12 +551,23 @@
                                 Create Utility
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link active" href="#list">
                                 <i class="fas fa-table"></i>
                                 Vendor Table
                             </a>
                         </li>
+
+                        <!--LogOut-->
+                 <li class="nav-item">
+                <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link text-danger" OnClick="btnLogout_Click">
+                 <i class="fas fa-sign-out-alt me-2"></i>Logout
+             </asp:LinkButton>
+        </li>
+
+
+
                     </ul>
                 </div>
 
@@ -616,11 +633,11 @@
                         
 
                       
-                     <%--   <div class="section-body">
+                        <div class="section-body">
                             <div class="search-container">
                                 <i class="fas fa-search"></i>
                                 <asp:TextBox ID="txtSearchVendor" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtSearchVendor_TextChanged" Placeholder="Search Vendor..." />
-                            </div>--%>
+                            </div>
 
                             <div class="table-container">
 
@@ -693,7 +710,7 @@
                     <div class="modal-footer">
                         <asp:Button ID="btnCreateVendor" runat="server" Text="Create Vendor" CssClass="btn btn-primary" OnClick="btnCreateVendor_Click" />
                     </div>
-                    <asp:Label ID="Label2" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+                   
                 </div>
             </div>
         </div>
@@ -706,7 +723,7 @@
                         <h5 class="modal-title">Create User</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="modal-body">
+          <%--          <div class="modal-body">
                         <label class="form-label">Username</label>
                         <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control mb-2" />
                         <label class="form-label">Email</label>
@@ -715,14 +732,35 @@
                         <asp:TextBox ID="txtUserPhone" runat="server" CssClass="form-control mb-2" />
                         <label class="form-label">Password</label>
                         <asp:TextBox ID="txtUserPassword" runat="server" TextMode="Password" CssClass="form-control mb-2" />
-                    </div>
+                    </div>--%>
+
+                        <div class="modal-body">
+
+                            
+        <label>ReferenceNumber</label>
+        <asp:TextBox ID="txtReferenceNumber" runat="server" CssClass="form-control mb-2" />
+
+        <label>Username</label>
+        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control mb-2" />
+
+        <label>Email</label>
+        <asp:TextBox ID="txtUserEmail" runat="server" TextMode="Email" CssClass="form-control mb-2" />
+
+        <label>Phone Number</label>
+        <asp:TextBox ID="txtUserPhone" runat="server" CssClass ="form-control mb-2" />
+
+        <label>Password</label>
+        <asp:TextBox ID="txtUserPassword" runat="server" TextMode="Password" CssClass="form-control mb-2" />
+    </div>
                     <div class="modal-footer">
                         <asp:Button ID="btnCreateUser" runat="server" Text="Create User" CssClass="btn btn-success" OnClick="btnCreateCustomer_Click" />
                     </div>
-                    <asp:Label ID="MessageLabel1" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+                   
                 </div>
             </div>
         </div>
+
+
 
         <!-- Utility Modal -->
         <div class="modal fade" id="utilityModal" tabindex="-1">
@@ -739,13 +777,37 @@
                         <asp:TextBox ID="txtUtilityCode" runat="server" CssClass="form-control mb-2" />
                     </div>
                     <div class="modal-footer">
+
                         <asp:Button ID="btnCreateUtility" runat="server" Text="Create Utility" CssClass="btn btn-warning text-dark" OnClick="btnCreateUtility_Click" />
+
                     </div>
-                    <asp:Label ID="Label1" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+                   
                 </div>
             </div>
         </div>
+
     </form>
+
+
+
+
+    <!--Error message--> 
+    <div class="dropdown message-dropdown text-center mt-3" style="position: relative;">
+    <button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="msgDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        Notifications
+    </button>
+             <asp:Label ID="Label2" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+            <asp:Label ID="Label444" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+            <asp:Label ID="Label1" runat="server" CssClass="dropdown-item text-success" EnableViewState="false" />
+         <asp:Label ID="MessageLabel1" runat="server" CssClass="text-success mb-2" EnableViewState="false" />
+
+     
+</div>
+
+
+
+
+
 
     <asp:Label runat="server" ID="MessageLabel" CssClass="text-success" />
     <asp:Label ID="Label3" runat="server" CssClass="text-danger" />
