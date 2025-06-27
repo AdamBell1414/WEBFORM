@@ -12,14 +12,99 @@ namespace BilklPaymentWenFormPortal.NewForm
     {
 
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Expires = -1;
 
+            if (!IsPostBack)
+            {
+                if (Session["UserID"] == null || Session["RoleID"] == null)
+                {
+                    Response.Redirect("~/WebPaymentLoginPage.aspx");
+                    return;
+                }
 
+                int roleId = Convert.ToInt32(Session["RoleID"]);
+                if (roleId != 3) // Vendor
+                {
+                    Response.Redirect("~/Unauthorized.aspx");
+                    return;
+                }
 
+                int vendorId = Convert.ToInt32(Session["UserID"]);
+                LoadVendorDashboard(vendorId);
+                LoadCustomerTable(vendorId);
+            }
         }
 
+
+
+        private void LoadVendorDashboard(int vendorId)
+        {
+            try
+            {
+               
+                var service = new Api.BillPaymentApiEndPoint();
+                var response = service.GetVendorDashboardInfo(vendorId);
+
+                if (response != null && response.Success && response.Data != null)
+                {
+                    var dashboard = response.Data;
+
+                    vendor_name.InnerText = dashboard.VendorName ?? "N/A";
+                    total_payments.InnerText = dashboard.TotalPaymentsMade.ToString("N0");
+                    account_balance.InnerText = dashboard.AccountBalance.HasValue ? dashboard.AccountBalance.Value.ToString("N0") : "0";
+                    customers_worked.InnerText = dashboard.CustomersWorked.ToString();
+                }
+                else
+                {
+                    ShowDashboardMessage("Failed to load dashboard info.", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowDashboardMessage("Error loading dashboard: " + ex.Message, false);
+            }
+        }
+
+        private void LoadCustomerTable(int vendorId)
+        {
+            try
+            {
+                var service = new Api.BillPaymentApiEndPoint();
+                var response = service.GetCompletedTransactions(vendorId);
+
+                if (response != null && response.Success && response.Data != null)
+                {
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                    foreach (var txn in response.Data)
+                    {
+                        sb.Append("<tr>");
+                        sb.AppendFormat("<td>{0}</td>", txn.ReferenceNumber);
+                        sb.AppendFormat("<td>{0}</td>", txn.CustomerName);
+                        sb.AppendFormat("<td>{0}</td>", txn.Email);
+                        sb.AppendFormat("<td>{0:N0}</td>", txn.Amount);
+                        sb.AppendFormat("<td>{0}</td>", txn.ProcessedAt.HasValue ? txn.ProcessedAt.Value.ToString("yyyy-MM-dd HH:mm") : "");
+                        sb.AppendFormat("<td>{0}</td>", txn.UtilityToken);
+                        sb.AppendFormat("<td>{0}</td>", txn.UtilityReceiptNo);
+                        sb.Append("</tr>");
+                    }
+
+                    customer_body.InnerHtml = sb.ToString();
+                }
+                else
+                {
+                    customer_body.InnerHtml = "<tr><td colspan='7'>No customer transactions found.</td></tr>";
+                }
+            }
+            catch (Exception ex)
+            {
+                customer_body.InnerHtml = $"<tr><td colspan='7'>Error loading customers: {ex.Message}</td></tr>";
+            }
+        }
 
 
 
@@ -97,28 +182,21 @@ namespace BilklPaymentWenFormPortal.NewForm
             lblDashboardMessage.CssClass = isSuccess ? "text-success fw-bold" : "text-danger fw-bold";
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            Session.Clear();          
-            Session.Abandon();        
+            Session.Clear();
+            Session.Abandon();
 
-            // Optional: Clear auth cookies
-            Response.Cookies.Clear();
+            // Optional: explicitly clear UserID cookie if exists
+            if (Request.Cookies["ASP.NET_SessionId"] != null)
+            {
+                Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddDays(-1);
+            }
 
-            // Redirect to login
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+            Response.Expires = -1;
+
             Response.Redirect("~/WebPaymentLoginPage.aspx");
         }
 

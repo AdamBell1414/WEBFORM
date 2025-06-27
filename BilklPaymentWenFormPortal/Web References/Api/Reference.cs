@@ -49,6 +49,14 @@ namespace BilklPaymentWenFormPortal.Api {
         
         private System.Threading.SendOrPostCallback GetVendorDashboardInfoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetVendersCustomerInformationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetCompletedTransactionsForAllVendorsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetCompletedTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LoginUser2OperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -116,6 +124,18 @@ namespace BilklPaymentWenFormPortal.Api {
         
         /// <remarks/>
         public event GetVendorDashboardInfoCompletedEventHandler GetVendorDashboardInfoCompleted;
+        
+        /// <remarks/>
+        public event GetVendersCustomerInformationCompletedEventHandler GetVendersCustomerInformationCompleted;
+        
+        /// <remarks/>
+        public event GetCompletedTransactionsForAllVendorsCompletedEventHandler GetCompletedTransactionsForAllVendorsCompleted;
+        
+        /// <remarks/>
+        public event GetCompletedTransactionsCompletedEventHandler GetCompletedTransactionsCompleted;
+        
+        /// <remarks/>
+        public event LoginUser2CompletedEventHandler LoginUser2Completed;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CreateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -454,6 +474,122 @@ namespace BilklPaymentWenFormPortal.Api {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetVendersCustomerInformation", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfListOfBillPaymnet GetVendersCustomerInformation(int userId) {
+            object[] results = this.Invoke("GetVendersCustomerInformation", new object[] {
+                        userId});
+            return ((ApiResponseOfListOfBillPaymnet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetVendersCustomerInformationAsync(int userId) {
+            this.GetVendersCustomerInformationAsync(userId, null);
+        }
+        
+        /// <remarks/>
+        public void GetVendersCustomerInformationAsync(int userId, object userState) {
+            if ((this.GetVendersCustomerInformationOperationCompleted == null)) {
+                this.GetVendersCustomerInformationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetVendersCustomerInformationOperationCompleted);
+            }
+            this.InvokeAsync("GetVendersCustomerInformation", new object[] {
+                        userId}, this.GetVendersCustomerInformationOperationCompleted, userState);
+        }
+        
+        private void OnGetVendersCustomerInformationOperationCompleted(object arg) {
+            if ((this.GetVendersCustomerInformationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetVendersCustomerInformationCompleted(this, new GetVendersCustomerInformationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCompletedTransactionsForAllVendors", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfListOfBillPaymnet GetCompletedTransactionsForAllVendors() {
+            object[] results = this.Invoke("GetCompletedTransactionsForAllVendors", new object[0]);
+            return ((ApiResponseOfListOfBillPaymnet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCompletedTransactionsForAllVendorsAsync() {
+            this.GetCompletedTransactionsForAllVendorsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetCompletedTransactionsForAllVendorsAsync(object userState) {
+            if ((this.GetCompletedTransactionsForAllVendorsOperationCompleted == null)) {
+                this.GetCompletedTransactionsForAllVendorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCompletedTransactionsForAllVendorsOperationCompleted);
+            }
+            this.InvokeAsync("GetCompletedTransactionsForAllVendors", new object[0], this.GetCompletedTransactionsForAllVendorsOperationCompleted, userState);
+        }
+        
+        private void OnGetCompletedTransactionsForAllVendorsOperationCompleted(object arg) {
+            if ((this.GetCompletedTransactionsForAllVendorsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCompletedTransactionsForAllVendorsCompleted(this, new GetCompletedTransactionsForAllVendorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetCompletedTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfListOfBillPaymnet GetCompletedTransactions(int vendorId) {
+            object[] results = this.Invoke("GetCompletedTransactions", new object[] {
+                        vendorId});
+            return ((ApiResponseOfListOfBillPaymnet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCompletedTransactionsAsync(int vendorId) {
+            this.GetCompletedTransactionsAsync(vendorId, null);
+        }
+        
+        /// <remarks/>
+        public void GetCompletedTransactionsAsync(int vendorId, object userState) {
+            if ((this.GetCompletedTransactionsOperationCompleted == null)) {
+                this.GetCompletedTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCompletedTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("GetCompletedTransactions", new object[] {
+                        vendorId}, this.GetCompletedTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnGetCompletedTransactionsOperationCompleted(object arg) {
+            if ((this.GetCompletedTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCompletedTransactionsCompleted(this, new GetCompletedTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoginUser2", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ApiResponseOfBillPaymnet LoginUser2(string username, string password) {
+            object[] results = this.Invoke("LoginUser2", new object[] {
+                        username,
+                        password});
+            return ((ApiResponseOfBillPaymnet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginUser2Async(string username, string password) {
+            this.LoginUser2Async(username, password, null);
+        }
+        
+        /// <remarks/>
+        public void LoginUser2Async(string username, string password, object userState) {
+            if ((this.LoginUser2OperationCompleted == null)) {
+                this.LoginUser2OperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUser2OperationCompleted);
+            }
+            this.InvokeAsync("LoginUser2", new object[] {
+                        username,
+                        password}, this.LoginUser2OperationCompleted, userState);
+        }
+        
+        private void OnLoginUser2OperationCompleted(object arg) {
+            if ((this.LoginUser2Completed != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginUser2Completed(this, new LoginUser2CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -572,6 +708,8 @@ namespace BilklPaymentWenFormPortal.Api {
         
         private System.Nullable<int> userIDField;
         
+        private int roleIDField;
+        
         private string usernameField;
         
         private string passwordHashField;
@@ -676,6 +814,16 @@ namespace BilklPaymentWenFormPortal.Api {
             }
             set {
                 this.userIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int RoleID {
+            get {
+                return this.roleIDField;
+            }
+            set {
+                this.roleIDField = value;
             }
         }
         
@@ -1515,6 +1663,110 @@ namespace BilklPaymentWenFormPortal.Api {
         private object[] results;
         
         internal GetVendorDashboardInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfBillPaymnet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfBillPaymnet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetVendersCustomerInformationCompletedEventHandler(object sender, GetVendersCustomerInformationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetVendersCustomerInformationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetVendersCustomerInformationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfListOfBillPaymnet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfListOfBillPaymnet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetCompletedTransactionsForAllVendorsCompletedEventHandler(object sender, GetCompletedTransactionsForAllVendorsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCompletedTransactionsForAllVendorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCompletedTransactionsForAllVendorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfListOfBillPaymnet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfListOfBillPaymnet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void GetCompletedTransactionsCompletedEventHandler(object sender, GetCompletedTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCompletedTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCompletedTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ApiResponseOfListOfBillPaymnet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ApiResponseOfListOfBillPaymnet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void LoginUser2CompletedEventHandler(object sender, LoginUser2CompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginUser2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginUser2CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

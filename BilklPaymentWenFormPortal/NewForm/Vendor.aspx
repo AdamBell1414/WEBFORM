@@ -493,6 +493,10 @@
             opacity: 0.5;
         }
     </style>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 </head>
 
 <body>
@@ -575,7 +579,9 @@
                     <i class="fas fa-user"></i>
                 </div>
             </div>
-            <p class="stat-card-value" id="vendor-name">[Vendor Name]</p>
+            <p class="stat-card-value" id="vendor_name" runat="server">[Vendor Name]</p>
+
+            
         </div>
 
         <div class="stat-card">
@@ -585,7 +591,9 @@
                     <i class="fas fa-dollar-sign"></i>
                 </div>
             </div>
-            <p class="stat-card-value" id="total-payments">[Total Payments]</p>
+          <p class="stat-card-value" id="total_payments" runat="server">[Total Payments]</p>
+
+
         </div>
 
         <div class="stat-card">
@@ -595,7 +603,8 @@
                     <i class="fas fa-wallet"></i>
                 </div>
             </div>
-            <p class="stat-card-value" id="account-balance">[Account Balance]</p>
+        <p class="stat-card-value" id="account_balance" runat="server">[Account Balance]</p>
+
         </div>
 
         <div class="stat-card">
@@ -605,37 +614,46 @@
                     <i class="fas fa-users"></i>
                 </div>
             </div>
-            <p class="stat-card-value" id="customers-worked">[Customers Worked]</p>
+            
+      <p class="stat-card-value" id="customers_worked" runat="server">[Customers Worked]</p>
         </div>
     </div>
 
     <!-- Enhanced Customer Table Section -->
-    <div id="list" class="section">
-        <div class="section-header">
-            <h4><i class="fas fa-users me-2"></i>Customer Management</h4>
-            <p>Search and manage your customer database</p>
+    <!-- Enhanced Customer Table Section -->
+<div id="list" class="section">
+    <div class="section-header">
+        <h4><i class="fas fa-users me-2"></i>Customer Management</h4>
+        <p>Search and manage your customer database</p>
+    </div>
+    <div class="section-body">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="txtSearchCustomer" class="form-control" placeholder="Search customers by name or reference..." />
         </div>
-        <div class="section-body">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="txtSearchVendor" class="form-control" placeholder="Search customers by name or code..." />
-            </div>
 
-            <div class="table-container">
-                <table id="vendor-table" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Customer Code</th>
-                            <th>Customer Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dynamic rows will be inserted here -->
-                    </tbody>
-                </table>
-            </div>
+        <div class="table-container">
+            <table id="customer-table" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Reference Number</th>
+                        <th>Customer Name</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                        <th>Processed At</th>
+                        <th>Token</th>
+                        <th>Receipt No</th>
+                    </tr>
+                </thead>
+                <tbody id="customer_body" runat="server">
+
+                    <!-- Dynamic rows will be inserted here -->
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
+
 </div>
 
             </div>

@@ -18,73 +18,60 @@ namespace BilklPaymentWenFormPortal
 
         }
 
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                // Get user input from form
                 string userName = txtUsernameOrEmail.Text.Trim();
                 string password = txtPassword.Text.Trim();
 
-                // Call your Web Service login method
                 var service = new Api.BillPaymentApiEndPoint();
+                var response = service.LoginUser2(userName, password);  // Call LoginUser2
 
-                var response = service.LoginUser(userName, password);
-
-                if (response != null && response.Success)
+                if (response != null && response.Success && response.Data != null)
                 {
-                    int roleId = response.Data;
+                    var loginInfo = response.Data;
 
-                    
-                    Session["UserID"] = roleId; 
+                    Session["UserID"] = loginInfo.UserID;
                     Session["UserName"] = userName;
-                    Session["RoleID"] = roleId;
+                    Session["RoleID"] = loginInfo.RoleID;
 
-                    
-
-                    // Redirect based on role
-                    switch (roleId)
+                    // Optional: If your BillPaymnet object contains VendorName or other info, set here
+                    if (!string.IsNullOrEmpty(loginInfo.VendorName))
                     {
-                        case 1: // Admin
+                        Session["VendorName"] = loginInfo.VendorName;
+                    }
+
+                    switch (loginInfo.RoleID)
+                    {
+                        case 1:
                             Response.Redirect("~/AdminPages/AdminDashboard.aspx");
                             break;
-                        case 2: // User
+                        case 2:
                             Response.Redirect("~/UserDashboard.aspx");
                             break;
-                        case 3: // Vendor
+                        case 3:
                             Response.Redirect("~/NewForm/Vendor.aspx");
                             break;
-                        case 4: // Customer
+                        case 4:
                             Response.Redirect("~/CustomerPages/Customer.aspx");
                             break;
                         default:
                             lblMessage.ForeColor = System.Drawing.Color.Red;
-                            lblMessage.Text = "Login failed or unknown role. Please contact support.";
+                            lblMessage.Text = "Login failed or unknown role.";
                             break;
                     }
                 }
                 else
                 {
-                    // Login failed
                     lblMessage.ForeColor = System.Drawing.Color.Red;
                     lblMessage.Text = "Invalid username or password.";
                 }
             }
-            catch (ArgumentException ex)
-            {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = $"Input Error: Invalid Credentials ";
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = $"Access Denied: ";
-            }
             catch (Exception ex)
             {
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = $" Invalid Credentials ";
+                lblMessage.Text = "Login error: " + ex.Message;
             }
         }
 

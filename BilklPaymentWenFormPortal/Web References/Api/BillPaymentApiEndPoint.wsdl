@@ -164,6 +164,7 @@
       <s:complexType name="BillPaymnet">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="UserID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PasswordHash" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
@@ -249,6 +250,59 @@
           <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:BillPaymnet" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetVendersCustomerInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVendersCustomerInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVendersCustomerInformationResult" type="tns:ApiResponseOfListOfBillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedTransactionsForAllVendors">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCompletedTransactionsForAllVendorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompletedTransactionsForAllVendorsResult" type="tns:ApiResponseOfListOfBillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="vendorId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompletedTransactionsResult" type="tns:ApiResponseOfListOfBillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUser2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUser2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUser2Result" type="tns:ApiResponseOfBillPaymnet" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="guid">
@@ -318,6 +372,30 @@
   <wsdl:message name="GetVendorDashboardInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetVendorDashboardInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetVendersCustomerInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVendersCustomerInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetVendersCustomerInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVendersCustomerInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedTransactionsForAllVendorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompletedTransactionsForAllVendors" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedTransactionsForAllVendorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompletedTransactionsForAllVendorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompletedTransactions" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompletedTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginUser2SoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUser2" />
+  </wsdl:message>
+  <wsdl:message name="LoginUser2SoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUser2Response" />
+  </wsdl:message>
   <wsdl:portType name="BillPaymentApiEndPointSoap">
     <wsdl:operation name="CreateUser">
       <wsdl:input message="tns:CreateUserSoapIn" />
@@ -358,6 +436,22 @@
     <wsdl:operation name="GetVendorDashboardInfo">
       <wsdl:input message="tns:GetVendorDashboardInfoSoapIn" />
       <wsdl:output message="tns:GetVendorDashboardInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendersCustomerInformation">
+      <wsdl:input message="tns:GetVendersCustomerInformationSoapIn" />
+      <wsdl:output message="tns:GetVendersCustomerInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedTransactionsForAllVendors">
+      <wsdl:input message="tns:GetCompletedTransactionsForAllVendorsSoapIn" />
+      <wsdl:output message="tns:GetCompletedTransactionsForAllVendorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedTransactions">
+      <wsdl:input message="tns:GetCompletedTransactionsSoapIn" />
+      <wsdl:output message="tns:GetCompletedTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser2">
+      <wsdl:input message="tns:LoginUser2SoapIn" />
+      <wsdl:output message="tns:LoginUser2SoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BillPaymentApiEndPointSoap" type="tns:BillPaymentApiEndPointSoap">
@@ -452,6 +546,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetVendersCustomerInformation">
+      <soap:operation soapAction="http://tempuri.org/GetVendersCustomerInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedTransactionsForAllVendors">
+      <soap:operation soapAction="http://tempuri.org/GetCompletedTransactionsForAllVendors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedTransactions">
+      <soap:operation soapAction="http://tempuri.org/GetCompletedTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser2">
+      <soap:operation soapAction="http://tempuri.org/LoginUser2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BillPaymentApiEndPointSoap12" type="tns:BillPaymentApiEndPointSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -538,6 +668,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetVendorDashboardInfo">
       <soap12:operation soapAction="http://tempuri.org/GetVendorDashboardInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendersCustomerInformation">
+      <soap12:operation soapAction="http://tempuri.org/GetVendersCustomerInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedTransactionsForAllVendors">
+      <soap12:operation soapAction="http://tempuri.org/GetCompletedTransactionsForAllVendors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedTransactions">
+      <soap12:operation soapAction="http://tempuri.org/GetCompletedTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser2">
+      <soap12:operation soapAction="http://tempuri.org/LoginUser2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
